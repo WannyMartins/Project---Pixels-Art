@@ -1,33 +1,37 @@
-/* let createPalete = document.createElement('section');
-let ondePaleteFica = document.querySelector('body');
-createPalete.id ='color-palette';
-ondePaleteFica.appendChild(createPalete);
+window.onload = [setColorBlack, setBackgroundColor] 
 
-let blocos =[0,1,2,3];
-
-for(let i =0; i < blocos.length; i+=1){
-    let criaBlocos = document.createElement('div');
-    let ondeBlocosFica = document.getElementById('color-palette');
-    criaBlocos.className = 'color'
-    ondeBlocosFica.appendChild(criaBlocos);
-    i=blocos[i];
+     
     
-}
-
- function recebeId(id){
-let idOrdem = document.getElementsByClassName('color')
-for(let i = 0; i < idOrdem.length; i += 1){
-    idOrdem[i].id=id[i]
-   
-
+    function setColorBlack(){
+    let corInicial = document.querySelector('#primeira');
+    corInicial.className ='color selected'
     }
-}
-let ids = ['primeira', 'segunda', 'terceira', 'quarta']
+    
 
-recebeId(ids);
- */
-window.onload = function() {
-    function setBackgroundColor(color) {
-      let cor = document.querySelector(".pixel")
-      cor.style.backgroundColor = 'white'}
+    function setBackgroundColor() {
+        let cor = document.querySelector(".pixel")
+        cor.style.backgroundColor = 'white'
     }
+
+       let colors = document.querySelectorAll('.color')
+       for (let i = 0; i < colors.length; i+=1){
+        colors[i].addEventListener("click", mudaCor)
+    }
+    function mudaCor(item) {
+        for (let i = 0; i < colors.length; i+=1){
+            colors[i].className = "color"
+        } 
+        item.target.className = "color selected"
+    } // vi esse código do Rodrigo castro no slack
+
+      
+    
+
+
+ 
+
+
+//Referencias
+//https://medium.com/@erycd/como-adicionar-e-remover-classes-de-elementos-html-com-vanilla-js-7b6527b7aa2f  >>>>>> aprendi a usar o .toggle)
+
+//uso do onclick >>>>>> https://www.w3schools.com/jsref/event_onclick.asp
