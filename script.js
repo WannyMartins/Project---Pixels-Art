@@ -29,6 +29,5 @@ recebeId(ids);
 window.onload = function() {
     function setBackgroundColor(color) {
       let cor = document.querySelector(".pixel")
-      cor.style.backgroundColor = 'white'
-//
+      cor.style.backgroundColor = 'white'}
     }
