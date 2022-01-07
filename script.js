@@ -4,14 +4,13 @@ function setColorBlack() {
 }
 
 function setBackgroundColor() {
-  const quadroCores = document.getElementById('pixel-board');
   const cor = document.querySelector('.pixel');
   cor.style.backgroundColor = 'white';
   
 }
 
 window.onload = [setColorBlack, setBackgroundColor];
-
+ 
 const colors = document.querySelectorAll('.color');
 
 function mudaClasseSlected(item) {
@@ -24,29 +23,38 @@ for (let i = 0; i < colors.length; i += 1) {
   colors[i].addEventListener('click', mudaClasseSlected);
 }
 
-document.querySelector('#black').style.backgroundColor = 'black';
-document.querySelector('#blue').style.backgroundColor = 'blue';
-document.querySelector('#yellow').style.backgroundColor = 'yellow';
-document.querySelector('#green').style.backgroundColor = 'green';
+var preto = document.querySelector('#black');
+preto.style.backgroundColor = 'black';
+var azul = document.querySelector('#blue');
+azul.style.backgroundColor = 'blue';
+var amarelo = document.querySelector('#yellow');
+amarelo.style.backgroundColor = 'yellow';
+var verde = document.querySelector('#green');
+verde.style.backgroundColor = 'green';
 
-var pixel = document.querySelectorAll('.pixel');
-
-
-  for (let i = 0; i < pixel.length; i += 1){
-  pixel[i].addEventListener('click', function(event){
+function colorir(event){
   let selected = document.querySelector('.selected').style.backgroundColor;
   event.target.style.backgroundColor = selected;
- })
+ }
+
+
+var pixel = document.getElementsByClassName('pixel');
+
+for (let i = 0; i < pixel.length; i += 1){
+  pixel[i].addEventListener('click',colorir)
 }
+
 var apagaCorPixel = document.querySelector('#clear-board')
-apagaCorPixel.addEventListener('click', refreshPage)
+apagaCorPixel.addEventListener('click', clearBoard)
 
+function clearBoard(){
+  const pixels = document.getElementsByClassName('pixel');
 
- function refreshPage(){
-    window.location.reload();
-        //https://www.ti-enxame.com/pt/javascript/botao-que-atualiza-pagina-ao-clicar/1051967998/=== atualiza a pagina quando clica.
-} 
- 
+  for (let i = 0; i < pixels.length; i += 1){
+    pixels[i].style.backgroundColor = 'white';
+  }
+}
+
 const boardSize = document.getElementById('board-size');
 const botaoVQV = document.getElementById('generate-board');
 
@@ -68,10 +76,6 @@ function aumentaTamanho(numero){
   if(numero >= 5 && numero<=50){  
   
   apagaPixelBoard();
-
-  
-
- 
     for(let item = 0; item < numero; item += 1){
     const container = document.createElement('div');
     container.className='container';
@@ -81,9 +85,10 @@ function aumentaTamanho(numero){
         pixel2.className='pixel';
         container.appendChild(pixel2)
       }
+      for (let i = 0; i < pixel.length; i += 1){
+        pixel[i].addEventListener('click',colorir)
+      }
   }
-
- 
   }else if (numero<5 ){
     apagaPixelBoard();
     numero = 5;
@@ -96,7 +101,12 @@ function aumentaTamanho(numero){
           pixel2.className='pixel';
           container.appendChild(pixel2)
         }
+        
       }
+      for (let i = 0; i < pixel.length; i += 1){
+        pixel[i].addEventListener('click',colorir)
+      }
+
     
   alert("Board inválido!")
   
@@ -113,14 +123,45 @@ function aumentaTamanho(numero){
           const pixel2 = document.createElement('div')
           pixel2.className='pixel';
           container.appendChild(pixel2)
+         
         }
       }
-    
-
-
+      for (let i = 0; i < pixel.length; i += 1){
+        pixel[i].addEventListener('click',colorir)
+      }
     alert("Board inválido!")
-   
   } 
   boardSize.value=null
 }
 
+
+ 
+function randomColor(){
+function numeroAleatório(min, max) {
+  return parseInt(Math.random() * (max - min) + min)
+}
+var r = numeroAleatório(0, 255);
+var g = numeroAleatório(0, 255);
+var b = numeroAleatório(0, 255);
+cor = 'rgb('+ r +', ' +g+', ' +b+')';
+
+return cor
+}
+//window.addEventListener('load', );
+
+ function coresAleatoria(){
+var azul = document.querySelector('#blue');
+azul.style.backgroundColor = 'blue';
+var amarelo = document.querySelector('#yellow');
+amarelo.style.backgroundColor = 'yellow';
+var verde = document.querySelector('#green');
+verde.style.backgroundColor = 'green';
+
+ 
+azul.style.backgroundColor = randomColor();
+amarelo.style.backgroundColor = randomColor();
+verde.style.backgroundColor = randomColor();
+}
+ window.addEventListener('load', coresAleatoria)
+
+//referencia na página do stackoverflow >>> https://pt.stackoverflow.com/questions/503252/como-mudar-o-background-color-toda-vez-que-a-p%C3%A1gina-atualizar-javascript]
